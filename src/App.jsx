@@ -66,19 +66,49 @@ export default function App() {
     });
   };
 
-  // ✅ Checkout Confirm
-  const handleCheckout = (formData) => {
-    const newReceipt = {
-      id: "RCPT-" + Math.random().toString(36).substring(2, 9).toUpperCase(),
+// ✅ Checkout Confirm
+// ✅ Checkout Confirm (matches backend)
+const handleCheckout = async (formData) => {
+  if (cartData.items.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  try {
+    const payload = {
+      cartItems: cartData.items, // send the full cart items
       name: formData.name,
       email: formData.email,
-      total: cartData.total.toFixed(2),
-      timestamp: new Date().toLocaleString(),
     };
-    setReceipt(newReceipt);
-    setShowCheckout(false);
-    setCartData({ items: [], total: 0 });
-  };
+
+    const res = await fetch("http://localhost:4000/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) throw new Error("Checkout failed");
+
+    const data = await res.json();
+
+    setReceipt({
+      id: data.order._id,       // MongoDB order ID
+      name: data.order.name,
+      email: data.order.email,
+      total: data.order.total,
+      timestamp: data.order.timestamp,
+    });
+
+    setShowCheckout(false);          // close modal
+    setCartData({ items: [], total: 0 }); // clear cart
+
+  } catch (err) {
+    console.error("Checkout failed:", err);
+    alert("Checkout failed. Please try again.");
+  }
+};
+
+
 
   return (
     <div className="min-h-screen bg-[#0b1221] text-white p-6">

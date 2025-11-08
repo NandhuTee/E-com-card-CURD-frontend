@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Cart({ items = [], total = 0, onRemove, onUpdateQty }) {
+export default function Cart({
+  items = [],
+  total = 0,
+  onRemove,
+  onUpdateQty,
+  onCheckout, // ✅ Added prop
+}) {
   return (
     <div className="bg-gray-800 p-4 rounded-xl shadow-lg">
       <h2 className="text-2xl font-semibold text-blue-400 mb-4 flex items-center gap-2">
@@ -59,6 +65,16 @@ export default function Cart({ items = [], total = 0, onRemove, onUpdateQty }) {
             <h3 className="text-lg font-semibold text-green-400">
               Total: ₹{total.toFixed(2)}
             </h3>
+
+            {/* ✅ Checkout Button */}
+            {items.length > 0 && (
+              <button
+                onClick={onCheckout}
+                className="mt-3 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+              >
+                Checkout
+              </button>
+            )}
           </div>
         </div>
       )}

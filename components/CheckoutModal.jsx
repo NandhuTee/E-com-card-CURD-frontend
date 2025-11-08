@@ -7,6 +7,8 @@ export default function CheckoutModal({ onClose, onSubmit }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+
+  
   const handleConfirm = () => {
     if (!form.name || !form.email) {
       alert("Please fill out your name and email before confirming.");
