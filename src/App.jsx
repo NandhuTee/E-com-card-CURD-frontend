@@ -81,7 +81,7 @@ const handleCheckout = async (formData) => {
       email: formData.email,
     };
 
-    const res = await fetch("http://localhost:4000/api/checkout", {
+    const res = await fetch("https://e-com-card-curd-backend.onrender.com/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
