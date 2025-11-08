@@ -22,27 +22,27 @@ This project integrates **MongoDB Atlas** for persisting orders, and **FakeStore
 ---
 
 ## 📂 Project Structure
-
+```
 E-Com-Cart/
 ├─ backend/
 │ ├─ models/
-│ │ └─ Order.js
-│ ├─ db.js
-│ ├─ server.js
-│ ├─ package.json
-│ └─ .env
+│ │ └─ Order.js # Mongoose schema for orders
+│ ├─ db.js # MongoDB connection setup
+│ ├─ server.js # Express server with API routes
+│ ├─ package.json # Backend dependencies and scripts
+│ └─ .env # Environment variables for backend
 ├─ ecom-frontend/
 │ ├─ src/
 │ │ ├─ components/
-│ │ │ ├─ Cart.jsx
-│ │ │ ├─ CheckoutModal.jsx
-│ │ │ └─ ProductsGrid.jsx
-│ │ ├─ App.jsx
-│ │ └─ main.jsx
-│ ├─ package.json
-│ └─ vite.config.js
-└─ README.md
-
+│ │ │ ├─ Cart.jsx # Cart component
+│ │ │ ├─ CheckoutModal.jsx # Checkout modal component
+│ │ │ └─ ProductsGrid.jsx # Product listing grid component
+│ │ ├─ App.jsx # Main React app component
+│ │ └─ main.jsx # React entry point
+│ ├─ package.json # Frontend dependencies and scripts
+│ └─ vite.config.js # Vite configuration
+└─ README.md # Project documentation
+```
 
 
 ---
